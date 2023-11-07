@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { FoodService } from 'src/app/services/food.service';
 import { Food } from 'src/app/shared/models/food';
 
@@ -11,17 +12,20 @@ import { Food } from 'src/app/shared/models/food';
 export class HomeComponent {
   foods:Food[] = [];
   constructor( private foodService:FoodService,activatedRoute:ActivatedRoute){
+    let foodsObersable:Observable<Food[]>
     activatedRoute.params.subscribe((params) =>{
       if(params.searchTerm){
-        this.foods = this.foodService.getAllFoodsBySearchTerm(params.searchTerm);
+        foodsObersable = this.foodService.getAllFoodsBySearchTerm(params.searchTerm);
       }else if(params.tag){
-        this.foods=this.foodService.getAllFoodsByTag(params.tag); //anytime we have a tag parameter filter the food based in that tag
+        foodsObersable=this.foodService.getAllFoodsByTag(params.tag); //anytime we have a tag parameter filter the food based in that tag
       } else{
-        this.foods = foodService.getAll();
+        foodsObersable = foodService.getAll();
       }
+      foodsObersable.subscribe((serverFoods) =>{
+        this.foods = serverFoods;
+      })
     }) //means anytime when the params changed called the function inside
     // the subscribe
-    this.foods = foodService.getAll();
   }
   generateStarsArray(stars: number): number[] {
     const totalStars = 5;

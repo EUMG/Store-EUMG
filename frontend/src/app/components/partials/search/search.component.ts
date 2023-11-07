@@ -16,6 +16,6 @@ export class SearchComponent {
 
   search(term:string):void{
     if(term)
-    this.router.navigateByUrl('/search/'+term);
+    this.router.navigateByUrl('/search/'+ term);
   }
 }
