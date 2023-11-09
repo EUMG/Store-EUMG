@@ -6,22 +6,22 @@ export const sample_foods: Food[] =[
         id:'1',
         name:'chiken soup',
         price:11,
-        cookTime: '40-50',
+        cooktime: '40-50',
         favorite:true,
         origins:['india','asia'],
         stars:3,
-        imageUrl:'assets/food1.jpg',
+        imageurl:'assets/food1.jpg',
         tags: ['SlowFood','Soup']
     },
     {
         id:'2',
         name:'rice',
         price:11,
-        cookTime: '30-40',
+        cooktime: '30-40',
         favorite:false,
         origins:['india','asia'],
         stars:5,
-        imageUrl:'assets/food2.jpg',
+        imageurl:'assets/food2.jpg',
         tags: ['SlowFood','Pizza']
     }
 ]

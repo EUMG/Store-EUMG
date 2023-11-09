@@ -5,7 +5,7 @@
 >
 </app-not-found>
 <div *ngIf="food" class="container">
-    <img [src]="food.imageUrl" [alt]="food.name">
+    <img [src]="food.imageurl" [alt]="food.name">
     <div class="details">
         <div class="header">
             <span class="name">
@@ -30,7 +30,7 @@
         </div>
         <div class="cook-time">
             <span>
-                Time to cook about <strong>{{food.cookTime}}</strong>
+                Time to cook about <strong>{{food.cooktime}}</strong>
                 minutes
             </span>
         </div>

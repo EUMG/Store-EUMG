@@ -11,6 +11,7 @@ import { Food } from 'src/app/shared/models/food';
 })
 export class HomeComponent {
   foods:Food[] = [];
+
   constructor( private foodService:FoodService,activatedRoute:ActivatedRoute){
     let foodsObersable:Observable<Food[]>
     activatedRoute.params.subscribe((params) =>{
