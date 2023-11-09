@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login-page',
@@ -9,8 +11,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginPageComponent implements OnInit {
   loginForm!:FormGroup;
   isSubmited = false; //button or not
-
-  constructor(private formBuilder:FormBuilder){
+  returnUrl = ''
+  constructor(private formBuilder:FormBuilder,
+    private userService:UserService, private activatedRoute:ActivatedRoute,
+    private router:Router){
 
   }
 
@@ -18,8 +22,9 @@ export class LoginPageComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       email:['',[Validators.required,Validators.email]],
       password:['',[Validators.required]]
-    })
-    //loginForm.controls.email
+    })//loginForm.controls.email
+
+    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl //means the latest value
   }
   //getters
   get fc(){
@@ -33,6 +38,12 @@ export class LoginPageComponent implements OnInit {
 
     alert(`email: ${this.fc.email.value},
     password: ${this.fc.password.value}`);
+
+    this.userService.login({email:this.fc.email.value,
+    password: this.fc.password.value}).subscribe(()=>{
+      this.router.navigateByUrl(this.returnUrl);
+    });
+
   }
 
-}
+};
