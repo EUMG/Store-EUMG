@@ -16,9 +16,13 @@
                 label="Password"
             >
             </text-input>
-            <default-button text="Login">
-
-            </default-button>
+            <default-button text="Login"></default-button>
+            <div class="register">
+                New user? &nbsp;
+                <a href="" routerLink="/register" [queryParams]="{returnUrl:returnUrl}">
+                    Register here
+                </a>
+            </div>
         </form>
     </div>
 </div>

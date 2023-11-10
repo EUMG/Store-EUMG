@@ -2,7 +2,11 @@ import expres from "express";
 import cors from "cors";
 import foodRouter from './routers/food.router';
 import userRouter from './routers/user.router';
+import dotenv from 'dotenv';
+import { dbConnect } from "./configs/database.config";
 
+dotenv.config();
+dbConnect();
 const app = expres();
 app.use(expres.json());
 //localhost:4200
