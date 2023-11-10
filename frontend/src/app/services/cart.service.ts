@@ -64,4 +64,8 @@ export class CartService {
     return cartJson? JSON.parse(cartJson) : new Cart();
   }
 
+  getCart():Cart{
+    return this.cartSubject.value; //the subject always keep the latest values
+  }
+
 }
